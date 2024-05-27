@@ -307,6 +307,7 @@ class UpdateTable(QThread):
     def run(self):
         if PCB_B_list:
             self.update_clock.emit(str((30 * 60 - PCB_B_list[0].run_time) // 60))
+            print(str((30 * 60 - PCB_B_list[0].run_time) // 60))
         stime = 0
         while True:
             if PAUSE == 'NO':
@@ -317,9 +318,11 @@ class UpdateTable(QThread):
                         PCB_B_list[0] = PCB_B_list[0]._replace(Status='Ready', run_time=0)
                         PCB_B_list.sort(key=lambda x: x.Priority, reverse=True)
                         self.update_clock.emit(str((30 * 60 - PCB_B_list[0].run_time) // 60))
+                        print(str((30 * 60 - PCB_B_list[0].run_time) // 60))
                     if self.Hang == 'YES':
                         if PCB_B_list:
                             self.update_clock.emit(str((30 * 60 - PCB_B_list[0].run_time) // 60))
+                            print(str((30 * 60 - PCB_B_list[0].run_time) // 60))
                             PCB_B_list[0] = PCB_B_list[0]._replace(Status='Ready')
                             tmp = PCB_B_list[0]
                             PCB_B_list.sort(key=lambda x: x.Priority, reverse=True)
